@@ -19,7 +19,8 @@ from prompt import (
     gemini_single_query_env_prompts,
     gpt_free_query_env_prompts, gpt_summary_env_prompts,
 )
-from vlms.gemini_infer import gemini_query_2, gemini_query_1
+# from vlms.gemini_infer import gemini_query_2, gemini_query_1
+from vlms.vllm_infer import vllm_query_2, vllm_query_1
 from conv_net import CNN, fanin_init
 
 device = 'cuda'
@@ -668,10 +669,10 @@ class RewardModel:
 
                     vlm_labels.append(label_res)
                     time.sleep(0.1)
-            elif self.vlm == 'gemini_single_prompt':
+            elif self.vlm == 'vllm_single_prompt':
                 vlm_labels = []
                 for idx, (img1, img2) in enumerate(zip(img_t_1, img_t_2)):
-                    res = gemini_query_1([
+                    res = vllm_query_1([
                         gemini_free_query_prompt1,
                         Image.fromarray(img1), 
                         gemini_free_query_prompt2,
@@ -690,10 +691,10 @@ class RewardModel:
                     except:
                         res = -1 
                     vlm_labels.append(res)
-            elif self.vlm == "gemini_free_form":
+            elif self.vlm == "vllm_free_form":
                 vlm_labels = []
                 for idx, (img1, img2) in enumerate(zip(img_t_1, img_t_2)):
-                    res = gemini_query_2(
+                    res = vllm_query_2(
                             [
                                 gemini_free_query_prompt1,
                                 Image.fromarray(img1), 

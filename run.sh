@@ -3,7 +3,7 @@ python train_PEBBLE.py \
     env=softgym_ClothFoldDiagonal \
     seed=0 \
     vlm_label=1 \
-    vlm=gpt4v_two_image \
+    vlm=vllm_free_form \
     exp_name=test \
     reward=learn_from_preference \
     image_reward=1 \
@@ -25,7 +25,7 @@ python train_PEBBLE.py \
     exp_name=reproduce \
     reward=learn_from_preference \
     vlm_label=1 \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     image_reward=1 \
     reward_batch=40 \
     segment=1 \
@@ -49,7 +49,7 @@ python train_PEBBLE.py \
     exp_name=reproduce \
     reward=learn_from_preference \
     vlm_label=1 \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     image_reward=1 \
     reward_batch=40 \
     segment=1 \
@@ -72,7 +72,7 @@ python train_PEBBLE.py \
     exp_name=reproduce \
     reward=learn_from_preference \
     vlm_label=1 \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     image_reward=1 \
     reward_batch=40 \
     segment=1 \
@@ -93,7 +93,7 @@ python train_PEBBLE.py \
     seed=0 \
     exp_name=reproduce \
     reward=learn_from_preference \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     vlm_label=1 \
     exp_name=2024-3-24-icml-rebuttal-more-seeds \
     segment=1 \
@@ -113,7 +113,7 @@ python train_PEBBLE.py \
     exp_name=reproduce \
     reward=learn_from_preference \
     vlm_label=1 \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     image_reward=1 \
     reward_batch=100 \
     segment=1 \
@@ -137,7 +137,7 @@ python train_PEBBLE.py \
     exp_name=reproduce \
     reward=learn_from_preference \
     vlm_label=1 \
-    vlm=gemini_free_form \
+    vlm=vllm_free_form \
     image_reward=1 \
     reward_batch=100 \
     segment=1 \
