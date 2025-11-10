@@ -3,7 +3,7 @@ project(PyFleX)
 
 # set(CMAKE_VERBOSE_MAKEFILE ON)
 
-find_package(CUDA 9.0 REQUIRED)
+find_package(CUDAToolkit REQUIRED)
 find_package(pybind11 REQUIRED)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_DEBUG} -MMD -m64 -Wall -std=c++0x")
@@ -30,6 +30,10 @@ set(SOURCES ${SOURCES} ${ROOT}/core/voxelize.cpp)
 set(SOURCES ${SOURCES} ${ROOT}/bindings/opengl/imguiRenderGL.cpp)
 set(SOURCES ${SOURCES} ${ROOT}/bindings/opengl/shader.cpp)
 set(SOURCES ${SOURCES} ${ROOT}/bindings/opengl/shadersGL.cpp)
+set(SOURCES ${SOURCES} ${ROOT}/bindings/legacy_cuda_stubs.cpp)
+set(SOURCES ${SOURCES} ${ROOT}/bindings/powf_fix.c)
+
+set_source_files_properties(${ROOT}/bindings/powf_fix.c PROPERTIES LANGUAGE C)
 
 set(FLEXHEADERS ${ROOT})
 set(FLEXLIB ${ROOT} ${ROOT}/lib/linux64 ${ROOT}/bindings ${ROOT}/external/SDL2-2.0.4/lib/x64)
@@ -42,5 +46,6 @@ target_link_libraries(${EXAMPLE_BIN} PRIVATE ${ROOT}/lib/linux64/NvFlexExtReleas
 target_link_libraries(${EXAMPLE_BIN} PRIVATE ${ROOT}/lib/linux64/NvFlexReleaseCUDA_x64.a)
 target_link_libraries(${EXAMPLE_BIN} PRIVATE ${ROOT}/external/SDL2-2.0.4/lib/x64/libSDL2-2.0.so.0.4.0)
 target_link_libraries(${EXAMPLE_BIN} PRIVATE ${ROOT}/external/SDL2-2.0.4/lib/x64/libSDL2.a)
-target_link_libraries(${EXAMPLE_BIN} PRIVATE ${CUDA_LIBRARIES})
+target_include_directories(${EXAMPLE_BIN} PRIVATE ${CUDAToolkit_INCLUDE_DIRS})
+target_link_libraries(${EXAMPLE_BIN} PRIVATE CUDA::cudart CUDA::cuda_driver)
 
